@@ -1,0 +1,97 @@
+import 'dart:io';
+
+void main() {
+  while (true) {
+    print('\n--- Simple Calculator ---');
+    print('1. Addition');
+    print('2. Subtraction');
+    print('3. Multiplication');
+    print('4. Division');
+    print('5. Greater or Lesser');
+    print('6. Equal or Not');
+    print('7. Exit');
+    stdout.write('Choose an option (1-7): ');
+    String? choice = stdin.readLineSync();
+
+    if (choice == '7') {
+      print('Exiting the calculator. Goodbye!');
+      break;
+    }
+
+    double num1, num2;
+
+    switch (choice) {
+      case '1': // Addition
+        print('\nAddition');
+        num1 = getNumber('Enter the first number: ');
+        num2 = getNumber('Enter the second number: ');
+        print('Result: ${num1 + num2}');
+        break;
+
+      case '2': // Subtraction
+        print('\nSubtraction');
+        num1 = getNumber('Enter the first number: ');
+        num2 = getNumber('Enter the second number: ');
+        print('Result: ${num1 - num2}');
+        break;
+
+      case '3': // Multiplication
+        print('\nMultiplication');
+        num1 = getNumber('Enter the first number: ');
+        num2 = getNumber('Enter the second number: ');
+        print('Result: ${num1 * num2}');
+        break;
+
+      case '4': // Division
+        print('\nDivision');
+        num1 = getNumber('Enter the first number: ');
+        num2 = getNumber('Enter the second number: ');
+        if (num2 == 0) {
+          print('Error: Division by zero is not allowed.');
+        } else {
+          print('Result: ${num1 / num2}');
+        }
+        break;
+
+      case '5': // Greater or Lesser
+        print('\nComparison: Greater or Lesser');
+        num1 = getNumber('Enter the first number: ');
+        num2 = getNumber('Enter the second number: ');
+        if (num1 > num2) {
+          print('$num1 is greater than $num2');
+        } else if (num1 < num2) {
+          print('$num1 is less than $num2');
+        } else {
+          print('$num1 is equal to $num2');
+        }
+        break;
+
+      case '6': // Equal or Not
+        print('\nComparison: Equal or Not');
+        num1 = getNumber('Enter the first number: ');
+        num2 = getNumber('Enter the second number: ');
+        if (num1 == num2) {
+          print('$num1 is equal to $num2');
+        } else {
+          print('$num1 is not equal to $num2');
+        }
+        break;
+
+      default:
+        print('Invalid choice. Please try again.');
+        break;
+    }
+  }
+}
+
+double getNumber(String prompt) {
+  while (true) {
+    stdout.write(prompt);
+    String? input = stdin.readLineSync();
+    try {
+      return double.parse(input!);
+    } catch (e) {
+      print('Invalid input. Please enter a valid number.');
+    }
+  }
+}
